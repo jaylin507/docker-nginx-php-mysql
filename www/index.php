@@ -3,7 +3,7 @@
 
 try{
     $dsn = 'mysql:host=172.17.0.3;dbname=mysql';
-    $pdo = new \PDO($dsn,'jay','jay');
+    $pdo = new \PDO($dsn,'jay','jaypassword');
     echo 'database is running';
     foreach ($pdo->query('SELECT * from user') as $row) {
         print_r($row);
