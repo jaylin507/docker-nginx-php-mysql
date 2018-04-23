@@ -21,15 +21,14 @@ mysql:8.0.11
 
   + mysql_run.sh MySQL启动脚本，可以修改其中生成的容器名和默认密码
 
-  + run.sh Nginx+PHP启动脚本，__运行前请先修改宿主挂载目录为你的目录__
-
+  + run.sh Nginx+PHP启动脚本，
 * www web根目录
   + index.php
 
 ```
 //启动脚本
-* ./run.sh 启动nginx-php  【运行前请先修改宿主挂载目录为你的目录】
-* ./mysql_run.sh    启动mysql 【运行前请先修改宿主挂载目录为你的目录】
+* ./run.sh 启动nginx-php  
+* ./mysql_run.sh    启动mysql 
 ```
 ***
 ## 宿主连接MySQL
