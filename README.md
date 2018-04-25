@@ -22,7 +22,7 @@
 
 * 在 `/usr/local/bin` 目录下有很多docker提供的工具，可以使用`docker-php-ext-install`来进行安装
 
-* 直接执行'./docker-php-ext-install'会显示可安装的扩展，安装pdo扩展则可以这样 `./docker-php-ext-install pdo_mysql`
+* 直接执行`./docker-php-ext-install`会显示可安装的扩展，安装pdo扩展则可以这样 `./docker-php-ext-install pdo_mysql`
 
 
 # [2017-04-23] docker学习笔记。尝试搭建PHP开发环境。
@@ -101,4 +101,4 @@ docker 容器是互通的，可以通过 `docker network inspect bridge` 或其�
 * docker restart 重启容器
 * docker pull 拉取镜像
 * docker push 推送镜像
-
+* docker stop $(docker ps -aq) && docker rm $(docker ps -aq) 停止并删除所有容器
