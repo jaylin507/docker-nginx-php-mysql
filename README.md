@@ -1,4 +1,31 @@
-# docker学习笔记。尝试搭建PHP开发环境。
+
+# [2017-04-25] docker学习笔记。尝试搭建PHP开发环境。
+
+另一种实现方法，全部都pull官方镜像
+
+## mysql: 
+  `docker run --name jay-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d  mysql`
+## php:
+  `docker run --name jay-php -d -it --link jay-mysql:jay-mysql -v $(pwd)/www:/home -v $(pwd)/config/php.ini:/usr/local/etc/php/php.ini php:7.2-fpm`
+## nginx
+  `docker run --name jay-nginx -d -p 80:80 --link jay-php:jay-php -v $(pwd)/config/nginx.conf:/etc/nginx/nginx.conf --volumes-from jay-php nginx`
+## 说明
+* $(pwd)☞当前目录
+
+* 需要按顺序执行，php会关联MySQL，这样在代码里就可以使用别名来访问mysql。另外如果是pull的8.0的数据库，需要参考下面宿主连接MySQL中的设定一个使用mysql_native_password验证的账号
+
+* php.ini 和 nginx.conf 可以参考https://github.com/sungjaylin/docker-nginx-php-mysql/tree/master/service/config
+
+* 修改php.ini配置后需要重启php容器 `docker restart jay-php` //jay-php为run时设定的--name
+
+* 安装php扩展可以进入php容器使用docker提供的脚本安装 `docker exec -it jay-php bash`
+
+* 在 `/usr/local/bin` 目录下有很多docker提供的工具，可以使用`docker-php-ext-install`来进行安装
+
+* 直接执行'./docker-php-ext-install'会显示可安装的扩展，安装pdo扩展则可以这样 `./docker-php-ext-install pdo_mysql`
+
+
+# [2017-04-23] docker学习笔记。尝试搭建PHP开发环境。
 nginx和php基于centos镜像编译安装 ，mysql 是直接pull官方镜像
 
 ```
